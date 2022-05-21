@@ -10,35 +10,39 @@
  */
 class Solution {
 public:
+    int listlen (ListNode* l){
+        int n=0;
+        while (l!=NULL) ++n,l=l->next;
+        return n;
+    }
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* res = new ListNode();
-        ListNode* tmp = res;
-        int rem = 0;
-        bool flag = false;
-        while (l1 != nullptr || l2 != nullptr){
-            if (flag){
-                tmp->next = new ListNode();
-                tmp = tmp->next;
+        ListNode* ans=new ListNode;
+        ListNode* head=new ListNode;
+        head=ans;
+        int car=0;
+        if (listlen(l2)>listlen(l1)) swap(l1,l2);
+        while (l1!=NULL){
+            if (l2!=NULL){
+                ans->val = (l1->val+l2->val+car)%10;
+                car = (l1->val+l2->val+car)/10;
+                l2=l2->next;
+            }else{
+                ans->val = (l1->val+car)%10;
+                car = (l1->val+car)/10;
             }
-            int val = rem;
-            if (l1 != nullptr){
-                val += l1->val;
-                l1 = l1->next;
+            l1=l1->next;
+            if (l1!=NULL){
+                ListNode* tmp=new ListNode;
+                ans->next=tmp;
+                swap(ans,tmp);
             }
-            if (l2 != nullptr){
-                val += l2->val;
-                l2 = l2->next;
-            }
-            rem = val/10;
-            val %= 10;
-            tmp->val = val;
-            flag = true;
         }
-        if (rem!=0){
-            tmp->next = new ListNode();
-            tmp = tmp->next;
-            tmp->val = rem;
+        if (car){
+            ListNode* tmp=new ListNode;
+            ans->next=tmp;
+            tmp->val=car;
         }
-        return res;
+        
+        return head;
     }
 };
