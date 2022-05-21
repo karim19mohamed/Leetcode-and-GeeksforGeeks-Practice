@@ -1,15 +1,11 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        int ans = 0, pre = 0;
-        while (ans<=46340){
-            if (ans*ans == x)
-                return ans;
-            if (ans*ans > x)
-                break;
-            pre = ans;
-            ++ans;
+        unsigned int st = 0, en = 46341;
+        while(st<en){
+            unsigned int mid = st + (en-st+1)/2;
+            (mid*mid<=x)? st = mid : en = mid-1;
         }
-        return pre;
+        return st;
     }
 };
