@@ -9,22 +9,19 @@
  * };
  */
 class Solution {
-private:
-    ListNode* cur;
-    bool rec(ListNode* node){
-        if (node == NULL){
+    ListNode* rev_head;
+    bool rec(ListNode* head){
+        if (head == nullptr){
             return 1;
         }
-        bool ret = rec(node->next);
-        ret &= (cur->val == node->val);
-        cur = cur->next;
-        return ret;
+        bool res = rec(head->next);
+        res &= (rev_head->val==head->val);
+        rev_head = rev_head->next;
+        return res;
     }
 public:
     bool isPalindrome(ListNode* head) {
-        cur = new ListNode();
-        cur = head;
-        bool ans = rec(head);
-        return ans;
+        rev_head = head;
+        return rec(head);
     }
 };
