@@ -19,9 +19,29 @@ private:
         rev (head, head->next);
         head->next = pre;
     }
+    void iter_rev (ListNode* head){
+        stack<ListNode*> s;
+        ListNode* tmp = head;
+        while (tmp != nullptr){
+            s.push(tmp);
+            tmp = tmp->next;
+        }
+        if (!s.empty())
+            tail = s.top();
+        while(!s.empty()){
+            ListNode* a = s.top();
+            s.pop();
+            if (!s.empty()){
+                a->next = s.top();
+            }else{
+                a->next = nullptr;
+            }
+        }
+    }
 public:
     ListNode* reverseList(ListNode* head) {
-        rev (nullptr, head);
+        iter_rev (head);
+        // rev (nullptr, head);
         return tail;
     }
 };
