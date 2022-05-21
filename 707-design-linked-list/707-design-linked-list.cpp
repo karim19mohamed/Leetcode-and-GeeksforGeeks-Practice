@@ -2,13 +2,16 @@ class Node{
 public:
     int val;
     Node* nxt;
+    Node* prev;
     Node(){
         val = 0;
         nxt = nullptr;
+        prev = nullptr;
     }
     Node(int n){
         val = n;
         nxt = nullptr;
+        prev = nullptr;
     }
 };
 class MyLinkedList {
@@ -33,12 +36,14 @@ public:
     void addAtHead(int val) {
         Node* tmp = new Node(val);
         tmp->nxt = HEAD;
+        HEAD->prev = tmp;
         HEAD = tmp;
     }
     
     void addAtTail(int val) {
         TAIL->val = val;
         Node* tmp = new Node();
+        tmp->prev = TAIL;
         TAIL->nxt = tmp;
         TAIL = tmp;
     }
@@ -61,7 +66,9 @@ public:
         }else{
             Node* tmp = new Node(val);
             tmp->nxt = cur;
+            cur->prev = tmp;
             pre_cur->nxt = tmp;
+            tmp->prev = pre_cur;
         }
     }
     
@@ -83,9 +90,11 @@ public:
         }else if (cur==HEAD){
             Node* tmp = HEAD;
             HEAD = HEAD->nxt;
+            HEAD->prev = nullptr;
             delete tmp;
         }else{
             pre_cur->nxt = cur->nxt;
+            cur->nxt->prev = pre_cur;
             delete cur;
         }
     }
