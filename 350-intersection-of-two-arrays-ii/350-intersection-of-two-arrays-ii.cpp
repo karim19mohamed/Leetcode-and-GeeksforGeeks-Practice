@@ -1,11 +1,11 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        sort(nums1.begin(),nums1.end());
-        sort(nums2.begin(),nums2.end());
         vector<int> ans;
-        int pt1 = 0, pt2 = 0;
-        while(pt1<nums1.size() && pt2<nums2.size()){
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        int pt1=0, pt2=0;
+        while (pt1<nums1.size() && pt2<nums2.size()){
             if (nums1[pt1]==nums2[pt2]){
                 ans.push_back(nums1[pt1]);
                 ++pt1;
@@ -15,6 +15,7 @@ public:
             }else{
                 ++pt2;
             }
+                
         }
         return ans;
     }
