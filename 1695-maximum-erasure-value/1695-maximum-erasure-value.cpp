@@ -4,7 +4,10 @@ public:
     int maximumUniqueSubarray(vector<int>& nums) {
         bool cnt[N];
         memset(cnt,0,sizeof(cnt));
-        int pt1 = 0, pt2 = 0, sum = 0, ans = 0;
+        int pt1 = 0,
+            pt2 = 0,
+            sum = 0,
+            ans = 0;
         while(pt2<nums.size()){
             int num2 = nums[pt2],
                 num1 = nums[pt1];
