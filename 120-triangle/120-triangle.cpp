@@ -17,10 +17,30 @@ class Solution {
                                        dp_rec(triangle, lvl+1, idx));
         return res;
     }
+    int dp_iter(vector<vector<int>>& triangle){
+        int sz = triangle.size();
+        for (int idx = 0; idx<triangle[sz-1].size(); ++idx){
+            dp[sz-1][idx] = triangle[sz-1][idx];
+        }
+        for (int lvl=sz-2; lvl>-1; --lvl){
+            for (int idx = 0; idx<triangle[lvl].size(); ++idx){
+                dp[lvl][idx] = triangle[lvl][idx] + min(dp[lvl+1][idx+1],
+                                                        dp[lvl+1][idx]);
+            }
+        }
+        return dp[0][0];
+    }
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
-        memset(dp, -1, sizeof(dp));
-        return dp_rec(triangle, 0, 0);
+        // Naive Solution
         // return naive(triangle, 0, 0);
+        
+        // Recursive DP
+        // memset(dp, -1, sizeof(dp));
+        // return dp_rec(triangle, 0, 0);
+        
+        // Iterative DP
+        return dp_iter(triangle);
+        
     }
 };
