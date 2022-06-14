@@ -18,7 +18,6 @@ class Solution {
         if (idx1==sz1 || idx2==sz2){
             return sz1-idx1 + sz2-idx2;
         }
-        
         int& res = dp[idx1][idx2];
         if (~res)
             return res;
@@ -30,6 +29,26 @@ class Solution {
         }
         return res;
     }
+    int dp_iter(string word1, string word2){
+        for (int i=0;i<sz1;++i){
+            dp[i][sz2] = sz1-i;
+        }
+        for (int i=0;i<sz2;++i){
+            dp[sz1][i] = sz2-i;
+        }
+        dp[sz1][sz2] = 0;
+        for (int idx1=sz1-1; idx1>-1; --idx1){
+            for (int idx2=sz2-1; idx2>-1; --idx2){
+                if (word1[idx1]==word2[idx2]){
+                    dp[idx1][idx2] = dp[idx1+1][idx2+1];
+                }else{
+                    dp[idx1][idx2] = 1 + min(dp[idx1+1][idx2],
+                                             dp[idx1][idx2+1]);
+                }
+            }
+        }
+        return dp[0][0];
+    }
 public:
     int minDistance(string word1, string word2) {
         sz1 = word1.size();
@@ -39,7 +58,11 @@ public:
         // return naive(word1, word2, 0, 0);
         
         // recursive dp
+        // memset(dp,-1,sizeof(dp));
+        // return dp_rec(word1, word2, 0, 0);
+        
+        // iterative dp
         memset(dp,-1,sizeof(dp));
-        return dp_rec(word1, word2, 0, 0);
+        return dp_iter(word1, word2);
     }
 };
