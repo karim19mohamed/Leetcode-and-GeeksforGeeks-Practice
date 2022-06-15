@@ -51,11 +51,8 @@ class Solution {
     }
 public:
     int longestStrChain(vector<string>& words) {
-        time_t start, end;
         int sz = words.size();
-        
         init(sz);
-        time(&start);
         for (int i=0;i<sz;++i){
             for (int j=i+1;j<sz;++j){
                 if (abs( ((int)words[i].size()) - ((int)words[j].size()) )!=1)
@@ -73,14 +70,6 @@ public:
                 }
             }
         }
-        
-        
-        time(&end);
-        double time_taken = double(end - start);
-        cout << "Time taken by program is : " << fixed
-         << time_taken << setprecision(5);
-        cout << " sec " << endl;
-        
         int ans = 0;
         for (int i=0;i<sz;++i){
             ans = max(ans, dfs(i));
