@@ -10,7 +10,6 @@
  * };
  */
 class Solution {
-    // bool camera[1001];
     int dp[1001][3];
     int dfs(TreeNode* root, int vision){
         if (root==nullptr)
@@ -20,7 +19,6 @@ class Solution {
             return res;
             
         res = 1e5;
-        res = min(res, 1 + dfs(root->right, 2) + dfs(root->left, 2) );
         if (vision == 1){
             if (root->right != nullptr){
                 res = min(res, dfs(root->right, vision-1) + dfs(root->left, vision) );
@@ -31,6 +29,7 @@ class Solution {
         }else if (vision == 2){
             res = min(res, dfs(root->right, vision-1) + dfs(root->left, vision-1) );
         }
+        res = min(res, 1 + dfs(root->right, 2) + dfs(root->left, 2) );
         return res;
     }
     void define_id (TreeNode* root, bool flag){
