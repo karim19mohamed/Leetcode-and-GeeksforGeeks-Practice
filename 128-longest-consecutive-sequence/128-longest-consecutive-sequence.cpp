@@ -18,9 +18,8 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         map<int,bool> m;
-        for (auto num:nums){
+        for (auto num:nums)
             m[num] = 1;
-        }
         int ans = 0;
         for (auto num:nums)
             ans = max(ans,get_longest(m, num));
