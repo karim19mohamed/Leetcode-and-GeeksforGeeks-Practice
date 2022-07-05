@@ -1,12 +1,11 @@
 class Solution {
     void greedy(int& a1, int& a2, vector<int>& v){
         int sz = v.size();
-        for (int i=0;i<sz-1;++i){
+        for (int i=0;i<sz-1;++i)
             if (v[i+1] - v[i] > a2 - a1){
                 a1 = v[i];
                 a2 = v[i+1];
             }
-        }
     }
 public:
     int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
