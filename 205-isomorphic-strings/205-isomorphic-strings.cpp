@@ -9,20 +9,11 @@ public:
         for (int i=0;i<sz;++i){
             int cur = s[i];
             if (replacement[cur] == 0){
-                if (s[i]!=t[i]){
-                    if (!taken[t[i]]){
-                        replacement[cur] = t[i];
-                        taken[t[i]] = 1;
-                    }else{
-                        return false;
-                    }
+                if (!taken[t[i]]){
+                    replacement[cur] = t[i];
+                    taken[t[i]] = 1;
                 }else{
-                    if (!taken[t[i]]){
-                        replacement[cur] = t[i];
-                        taken[t[i]] = 1;
-                    }else{
-                        return false;
-                    }
+                    return false;
                 }
             }else{
                 char rep = replacement[cur];
