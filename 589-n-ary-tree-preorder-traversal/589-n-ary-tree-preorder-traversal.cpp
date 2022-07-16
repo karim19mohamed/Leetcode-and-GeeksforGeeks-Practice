@@ -26,10 +26,39 @@ class Solution {
         for(auto child: root->children)
             rec(child,ans);
     }
+    void iter(Node* root, vector<int> &ans){
+        if (!root)
+            return;
+        stack<Node*> st;
+        st.push(root);
+        while(!st.empty()){
+            Node* cur = st.top();
+            st.pop();
+            ans.push_back(cur->val);
+            int sz = cur->children.size();
+            for(int i=sz-1;i>-1;--i){
+                Node* child = cur->children[i];
+                if (child)
+                    st.push(child);
+            }
+        }
+    }
 public:
     vector<int> preorder(Node* root) {
         vector<int> ans;
-        rec(root, ans);
+        // rec(root, ans);
+        iter(root, ans);
         return ans;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
