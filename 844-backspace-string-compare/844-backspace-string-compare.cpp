@@ -15,8 +15,6 @@ public:
                 --pt2;
                 flag = 1;
             }
-            // if (flag)
-            //     continue;
             while(pt1>-1 && space1 && s[pt1]!='#'){
                 --pt1;
                 --space1;
@@ -34,8 +32,6 @@ public:
                     --pt1;
                     --pt2;
                     continue;
-                }else{
-                    return false;
                 }
             }
             return false;
