@@ -1,7 +1,7 @@
 class Solution {
     int m = 0;
     int n = 0;
-    bool binary_search(vector<int> &m, int &target){
+    bool binary_search(const vector<int> &m, const int &target){
         int st = 0, en = n-1;
         while(st<en){ // FFFFFFFTTTT
             int mid = st + (en-st)/2;
