@@ -9,11 +9,21 @@ class Solution {
         }
         return m[st]==target;
     }
+    int get_first_row(const vector<vector<int>> &matrix, const int &target){
+        int st = 0, en = m-1;
+        while(st<en){ // FFFFFFFTTTT
+            int mid = st + (en-st)/2;
+            (matrix[mid][n-1]>=target)? en = mid : st = mid + 1;
+        }
+        return st;
+    }
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         m = matrix.size(), n = matrix[0].size();
         bool ans = false;
-        for (int i=0;i<m;++i){
+        int first_row = get_first_row(matrix, target);
+        cout << first_row << endl;
+        for (int i=first_row;i<m;++i){
             if (target<matrix[i][0])
                 break;
             if (target>=matrix[i][0] && target<=matrix[i][n-1])
