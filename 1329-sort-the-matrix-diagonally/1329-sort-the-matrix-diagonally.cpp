@@ -1,12 +1,13 @@
 class Solution {
+    int diag[101];
     void sorter(vector<vector<int>>& mat, int x, int y){
-        vector<int> diag;
+        int sz = 0;
         int n = mat.size(),
             m = mat[0].size();
         int i = x, j = y;
         while(i<n && j<m)
-            diag.push_back(mat[i++][j++]);
-        sort(diag.begin(), diag.end());
+            diag[sz++] = mat[i++][j++];
+        sort(diag, diag+sz);
         i = 0;
         while(x<n && y<m)
             mat[x++][y++] = diag[i++];
