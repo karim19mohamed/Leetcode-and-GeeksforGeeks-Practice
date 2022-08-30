@@ -6,7 +6,7 @@ public:
             int num = nums[i];
             int idx = abs(num) - 1;
             if (nums[idx]<0)
-                ans.push_back(abs(num));
+                ans.push_back(idx+1);
             nums[idx] = - nums[idx];
         }
         return ans;
