@@ -15,7 +15,7 @@ class Solution {
 public:
     vector<int> numsSameConsecDiff(int n, int k) {
         this->k = k;
-        ans.clear();
+        // ans.clear();
         for (int i=1;i<10;++i)
             rec(i, n-1);
         return ans;
